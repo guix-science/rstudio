@@ -65,10 +65,7 @@ endif()
 
 
 # validate our dependencies exist
-foreach(VAR RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR
-            RSTUDIO_DEPENDENCIES_MATHJAX_DIR
-            RSTUDIO_DEPENDENCIES_PANDOC_DIR
-            RSTUDIO_DEPENDENCIES_QUARTO_DIR)
+foreach(VAR RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR)
 
  
    # skip quarto if not enabled
@@ -683,10 +680,6 @@ if(NOT RSTUDIO_SESSION_WIN32 AND NOT RSESSION_ALTERNATE_BUILD)
    install(DIRECTORY "${RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR}"
            DESTINATION "${RSTUDIO_INSTALL_SUPPORTING}/resources")
 
-   # install mathjax for local html preview
-   install(DIRECTORY "${RSTUDIO_DEPENDENCIES_MATHJAX_DIR}"
-           DESTINATION "${RSTUDIO_INSTALL_SUPPORTING}/resources")
-
    # install quarto (or pandoc if quarto disabled)
    if(QUARTO_ENABLED)
       # install some quarto folders into Resources, as needed
@@ -709,10 +702,6 @@ if(NOT RSTUDIO_SESSION_WIN32 AND NOT RSESSION_ALTERNATE_BUILD)
                DESTINATION "${RSTUDIO_INSTALL_BIN}"
                USE_SOURCE_PERMISSIONS)
       endif()
-   else()
-      install(DIRECTORY "${RSTUDIO_DEPENDENCIES_PANDOC_DIR}/"
-              DESTINATION "${RSTUDIO_INSTALL_BIN}/pandoc"
-              USE_SOURCE_PERMISSIONS)
    endif()
 
    # install embedded packages
