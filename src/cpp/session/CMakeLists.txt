@@ -48,9 +48,7 @@ else()
 endif()
 
 # validate our dependencies exist
-foreach(VAR RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR
-            RSTUDIO_DEPENDENCIES_MATHJAX_DIR
-            RSTUDIO_DEPENDENCIES_PANDOC_DIR)
+foreach(VAR RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR)
 
    # validate existence
    if(NOT EXISTS "${${VAR}}")
@@ -586,16 +584,6 @@ if(NOT RSTUDIO_SESSION_WIN32 AND NOT RSESSION_ALTERNATE_BUILD)
    # install hunspell dictionaries
    install(DIRECTORY "${RSTUDIO_DEPENDENCIES_DICTIONARIES_DIR}"
            DESTINATION "${RSTUDIO_INSTALL_SUPPORTING}/resources")
-
-   # install mathjax for local html preview
-   install(DIRECTORY "${RSTUDIO_DEPENDENCIES_MATHJAX_DIR}"
-           DESTINATION "${RSTUDIO_INSTALL_SUPPORTING}/resources")
-
-   # install pandoc
-   file(GLOB PANDOC_FILES "${RSTUDIO_DEPENDENCIES_PANDOC_DIR}/pandoc*")
-   install(FILES ${PANDOC_FILES}
-           PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
-           DESTINATION "${RSTUDIO_INSTALL_BIN}/pandoc")
 
    # install embedded packages
    foreach(PKG ${RSTUDIO_EMBEDDED_PACKAGES})
