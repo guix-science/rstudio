@@ -41,10 +41,6 @@ export const lanagugeMappings = {
     csl: 'ca-AD',
     bibtex: 'catalan',
   },
-  chinese: {
-    csl: 'zh-CN',
-    bibtex: 'pinyin',
-  },
   croatian: {
     csl: 'hr-HR',
     bibtex: 'croatian',
