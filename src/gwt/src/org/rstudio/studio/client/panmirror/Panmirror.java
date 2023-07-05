@@ -15,6 +15,7 @@
 package org.rstudio.studio.client.panmirror;
 
 import org.rstudio.core.client.ExternalJavaScriptLoader;
+import org.rstudio.core.client.ExternalStyleSheetLoader;
 
 import jsinterop.annotations.JsType;
 import jsinterop.annotations.JsOverlay;
@@ -27,12 +28,16 @@ public class Panmirror
 {
 
    @JsOverlay
-   public static void load(ExternalJavaScriptLoader.Callback onLoaded) {    
-      panmirrorLoader_.addCallback(onLoaded);
+   public static void load(ExternalJavaScriptLoader.Callback onLoaded) {
+      panmirrorCssLoader_.addCallback(() -> 
+        panmirrorLoader_.addCallback(onLoaded));
    }
    
    @JsOverlay
    private static final ExternalJavaScriptLoader panmirrorLoader_ =
      new ExternalJavaScriptLoader("js/panmirror/panmirror.js");
    
+   @JsOverlay
+   private static final ExternalStyleSheetLoader panmirrorCssLoader_ =
+     new ExternalStyleSheetLoader("js/panmirror/panmirror.css");
 }
